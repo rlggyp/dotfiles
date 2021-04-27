@@ -1,0 +1,37 @@
+Xcursor.theme:Breeze Light
+XTerm*vt100.utf8:true
+XTerm*termName: xterm-256color
+XTerm*vt100.metaSendsEscape: true
+XTerm*vt100.saveLines: 4096
+XTerm*vt100.renderFont: true
+XTerm*vt100.locale:true
+XTerm.vt100.bellIsUrgent: false
+XTerm*vt100.faceName:xft:Mononoki NF:size=11:antialias=true
+XTerm*letterSpace: -1
+XTerm*vt100.scrollBar:false
+xterm*visualBell:off
+XTerm*background:#282a36
+XTerm*foreground:#9EAAAA
+XTerm*color0:#100e23
+XTerm*color1:#ff8080
+XTerm*color2:#95ffa4
+XTerm*color3:#ffe9aa
+XTerm*color4:#91ddff
+XTerm*color5:#c991e1
+XTerm*color6:#aaffe4
+XTerm*color7:#cbe3e7
+XTerm*color8:#565575
+XTerm*color9:#ff5458
+XTerm*color10:#62d196
+XTerm*color11:#ffb378
+XTerm*color12:#65b2ff
+XTerm*color13:#906cff
+XTerm*color14:#63f2f1
+XTerm*color15:#a6b3cc
+XTerm*vt100.translations: #override \n\
+    Ctrl <Key> minus: smaller-vt-font() \n\
+    Ctrl <Key> plus: larger-vt-font() \n\
+    Ctrl <Key> 0: set-vt-font(d) \n\
+    Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
+    Ctrl Shift <Key>V: insert-selection(CLIPBOARD)
+
