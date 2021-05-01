@@ -10,7 +10,7 @@ XTerm*vt100.faceName:xft:Mononoki NF:size=11:antialias=true
 XTerm*letterSpace: -1
 XTerm*vt100.scrollBar:false
 xterm*visualBell:off
-XTerm*background:#282a36
+XTerm*background:#171423
 XTerm*foreground:#9EAAAA
 XTerm*color0:#100e23
 XTerm*color1:#ff8080
