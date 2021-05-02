@@ -2,8 +2,8 @@ Config { font = "xft:mononoki NF:size=9:Regular, Symbola:size=9:Regular, Noto Sa
        , additionalFonts = []
        , borderColor = "#282a36"
        , border = NoBorder
-       , bgColor = "#171423"
-       , fgColor = "#dadada"
+       , bgColor = "#282828"
+       , fgColor = "#ebdbb2"
        , alpha = 255
        , position = Top
        , textOffset = -1

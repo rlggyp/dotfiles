@@ -19,17 +19,17 @@ import XMonad.ManageHook
 import XMonad.Util.NamedScratchpad
 import qualified XMonad.StackSet as W
 
-rBdr  = 5
-rCol1 = "#171423"
-rCol2 = "#dadada"
+--rBdr  = 10
+rCol1 = "#282828"
+rCol2 = "#ebdbb2"
 rCol3 = "#666666"
 rCol4 = "#ff3333"
-rCol5 = "#dadada"
+rCol5 = "#b8bb26"
 rFont = "xft:mononoki NF:size=9"
 
 rTerminal               = "xterm" 
 rModMask                = mod4Mask
-rBorderWidth            = 2
+rBorderWidth            = 3
 rNormalBorderColor      = rCol1
 rFocusedBorderColor     = rCol5
 rFocusFollowMouse       = False
@@ -157,12 +157,12 @@ main = do
 	, logHook		= dynamicLogWithPP $ xmobarPP { ppOutput = hPutStrLn xmproc0 
                                                             , ppTitle    = xmobarColor rCol2 "" . shorten 80
                                                             , ppCurrent  = xmobarColor rCol5 "" . wrap "[ " " ]" 
-                                                            , ppHidden	 = xmobarColor rCol5 "" . wrap "" "" 
+                                                            , ppHidden	 = xmobarColor rCol2 "" . wrap "" "" 
                                                             , ppHiddenNoWindows = xmobarColor rCol3 ""
                                                             , ppUrgent   = xmobarColor rCol1 rCol4 . wrap "!" "!" 
                                                             , ppSep	 =  ""
 							    , ppSort     = fmap (. XMonad.Util.NamedScratchpad.namedScratchpadFilterOutWorkspace) (ppSort xmobarPP)
-                                                            , ppLayout	 = xmobarColor rCol5 "" .
+                                                            , ppLayout	 = xmobarColor rCol2 "" .
 									  (\ x -> pad $ case x of
 										"Spacing Tall" 		-> "[]="
 										"Spacing Mirror Tall" 	-> "TTT"
