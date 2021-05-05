@@ -24,12 +24,12 @@ rCol1 = "#282828"
 rCol2 = "#ebdbb2"
 rCol3 = "#666666"
 rCol4 = "#ff3333"
-rCol5 = "#b8bb26"
+rCol5 = "#ebdbb2"
 rFont = "xft:mononoki NF:size=9"
 
-rTerminal               = "xterm" 
+rTerminal               = "rxvt" 
 rModMask                = mod4Mask
-rBorderWidth            = 3
+rBorderWidth            = 2
 rNormalBorderColor      = rCol1
 rFocusedBorderColor     = rCol5
 rFocusFollowMouse       = False
@@ -40,8 +40,8 @@ pad = wrap " " " "
 
 rScratchpads::[NamedScratchpad]
 rScratchpads = [ NS "terminal" (rTerminal ++ " -name terminal") (resource =? "terminal") (customFloating $ W.RationalRect (0.1) (0.15) (0.8) (0.7))
-	       , NS "ssr" "simplescreenrecorder" (className =? "SimpleScreenRecorder") doCenterFloat 
-	       , NS "vscode" "code" (className =? "Code") doFullFloat 
+    	       , NS "ssr" "simplescreenrecorder" (className =? "SimpleScreenRecorder") doCenterFloat 
+    	       , NS "vscode" "code" (className =? "Code") doFullFloat 
                , NS "fm" (rTerminal ++ " -e ranger") (title =? "ranger") (customFloating $ W.RationalRect (0.1) (0.15) (0.8) (0.7)) 
                , NS "network" (rTerminal ++ " -e nmtui") (title =? "nmtui") doCenterFloat 
        	       , NS "mplayer" (rTerminal ++ " -e cmus") (title =? "cmus") (customFloating $ W.RationalRect (0.1) (0.15) (0.8) (0.7)) 
@@ -66,9 +66,10 @@ rManageHook  = composeAll
   , title     =? "Open Files"                   --> (customFloating $ W.RationalRect (0.1) (0.15) (0.8) (0.7))
   , title     =? "Choose Files"                 --> (customFloating $ W.RationalRect (0.1) (0.15) (0.8) (0.7))
   , title     =? "Select a filename"            --> (customFloating $ W.RationalRect (0.1) (0.15) (0.8) (0.7))
-  , title     =? "File Upload"  	        --> (customFloating $ W.RationalRect (0.1) (0.15) (0.8) (0.7))
-  , title     =? "Insert Image"  	        --> (customFloating $ W.RationalRect (0.1) (0.15) (0.8) (0.7))
+  , title     =? "File Upload"  	            --> (customFloating $ W.RationalRect (0.1) (0.15) (0.8) (0.7))
+  , title     =? "Insert Image"  	            --> (customFloating $ W.RationalRect (0.1) (0.15) (0.8) (0.7))
   , title     =? "Question"                     --> doCenterFloat
+  , title     =? "Visual Studio Code"           --> doCenterFloat
   ] <+> namedScratchpadManageHook rScratchpads
 
 rLayoutHook = avoidStruts $ layoutHook def 
@@ -78,7 +79,7 @@ rLayoutHook = avoidStruts $ layoutHook def
 --        nmaster = 1
 --        ratio   = 1/2
 --        delta   = 3/100
-
+-- Remove Default Key
 rRmKey = [ ("M-p")
         , ("M-q")
         , ("M-S-p")
@@ -89,7 +90,7 @@ rRmKey = [ ("M-p")
         , ("M-S-e")
         , ("M-S-r")
         ]
-
+-- Prompt Config 
 rXPConfig = def  
           { font = rFont
           , bgColor = rCol1
@@ -129,7 +130,7 @@ rKey =  [ ("M-S-<Return>", shellPrompt rXPConfig)
         , ("M-S-g", spawn "google-chrome --incognito")
       --, ("M-S-b", spawn "brave --incognito")
       --, ("M-S-x", spawn "xournalpp")
-        , ("M-S-l", spawn "libreoffice")
+        , ("M-S-l", spawn "libreoffice7.1")
         , ("M-b", spawn "killall xmobar")
         , ("M-S-p", spawn "pavucontrol")
         , ("M1-<Return>", namedScratchpadAction rScratchpads "terminal")
@@ -147,33 +148,33 @@ rKey =  [ ("M-S-<Return>", shellPrompt rXPConfig)
 main = do
  xmproc0 <- spawnPipe "xmobar"
  xmonad $ docks def
-	{ handleEventHook       = XMonad.Hooks.EwmhDesktops.fullscreenEventHook
+	{ handleEventHook   = XMonad.Hooks.EwmhDesktops.fullscreenEventHook
 	, manageHook		= rManageHook 
 	--, startupHook		= rStartupHook
 	, workspaces		= ["1","2","3","4","5","6","7","8","9"]
 	, layoutHook		= rLayoutHook
-	, modMask 		= rModMask
-	, terminal 		= rTerminal
-	, logHook		= dynamicLogWithPP $ xmobarPP { ppOutput = hPutStrLn xmproc0 
+	, modMask 	    	= rModMask
+	, terminal 	    	= rTerminal
+	, logHook	    	= dynamicLogWithPP $ xmobarPP { ppOutput = hPutStrLn xmproc0 
                                                             , ppTitle    = xmobarColor rCol2 "" . shorten 80
                                                             , ppCurrent  = xmobarColor rCol5 "" . wrap "[ " " ]" 
-                                                            , ppHidden	 = xmobarColor rCol2 "" . wrap "" "" 
+                                                            , ppHidden	 = xmobarColor rCol5 "" . wrap "" "*" 
                                                             , ppHiddenNoWindows = xmobarColor rCol3 ""
                                                             , ppUrgent   = xmobarColor rCol1 rCol4 . wrap "!" "!" 
-                                                            , ppSep	 =  ""
-							    , ppSort     = fmap (. XMonad.Util.NamedScratchpad.namedScratchpadFilterOutWorkspace) (ppSort xmobarPP)
+                                                            , ppSep	     =  ""
+				                            			    , ppSort     = fmap (. XMonad.Util.NamedScratchpad.namedScratchpadFilterOutWorkspace) (ppSort xmobarPP)
                                                             , ppLayout	 = xmobarColor rCol2 "" .
-									  (\ x -> pad $ case x of
-										"Spacing Tall" 		-> "[]="
-										"Spacing Mirror Tall" 	-> "TTT"
-										"Spacing Full" 		-> "[M]"
-										_			-> x
-									  )
-							    }
-	, borderWidth 		= rBorderWidth
+									                           (\ x -> pad $ case x of
+									                             "Spacing Tall" 		-> "[]="
+									                             "Spacing Mirror Tall" 	-> "TTT"
+									                             "Spacing Full" 		-> "[M]"
+									                             _			-> x
+									                           )
+	                                                  }
+	, borderWidth 		    = rBorderWidth
 	, normalBorderColor 	= rNormalBorderColor
 	, focusedBorderColor 	= rFocusedBorderColor
 	, focusFollowsMouse 	= rFocusFollowMouse
-	, clickJustFocuses 	= rClickJustFocuses
+	, clickJustFocuses 	    = rClickJustFocuses
 	} `removeKeysP` rRmKey
 	  `additionalKeysP` rKey
