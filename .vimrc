@@ -1,0 +1,21 @@
+syntax on
+set exrc
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+set smartindent
+set rnu nu
+set nohlsearch
+set noerrorbells
+set noshowmode
+set ignorecase
+set noswapfile
+set nobackup
+set undodir=~/.vim/undodir
+set undofile
+call plug#begin()
+    Plug 'morhetz/gruvbox'
+call plug#end()
+colorscheme gruvbox
+set background=dark
