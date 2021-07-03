@@ -39,9 +39,10 @@ pad :: String -> String
 pad = wrap " " " "
 
 rScratchpads::[NamedScratchpad]
-rScratchpads = [ NS "terminal" (rTerminal ++ " -name terminal") (resource =? "terminal") (customFloating $ W.RationalRect (0.1) (0.15) (0.8) (0.7))
+rScratchpads = [ NS "terminal" (rTerminal ++ " -name rTerminal") (resource =? "rTerminal") (customFloating $ W.RationalRect (0.1) (0.15) (0.8) (0.7))
     	       , NS "ssr" "simplescreenrecorder" (className =? "SimpleScreenRecorder") doCenterFloat 
-    	       , NS "vscode" "code" (className =? "Code") doFullFloat 
+    	       --, NS "vscode" "code" (className =? "Code") doFullFloat 
+    	       --, NS "sublime" "subl" (className =? "Sublime_text") (customFloating $ W.RationalRect (0.0001) (0.03) (1) (0.97)) 
                , NS "fm" (rTerminal ++ " -e ranger") (title =? "ranger") (customFloating $ W.RationalRect (0.1) (0.15) (0.8) (0.7)) 
                , NS "network" (rTerminal ++ " -e nmtui") (title =? "nmtui") doCenterFloat 
        	       , NS "mplayer" (rTerminal ++ " -e cmus") (title =? "cmus") (customFloating $ W.RationalRect (0.1) (0.15) (0.8) (0.7)) 
@@ -62,14 +63,22 @@ rManageHook  = composeAll
   , className =? "Lxappearance"                 --> doCenterFloat
 --  , className =? "Gimp"                         --> doCenterFloat
   , title     =? "Save File"                    --> (customFloating $ W.RationalRect (0.1) (0.15) (0.8) (0.7))
+  , title     =? "Change color of selected text"    --> doCenterFloat
+  , title     =? "Quit GIMP"                    --> doCenterFloat
+  , title     =? "Change Foreground Color"      --> doCenterFloat
   , title     =? "Open Folder"                  --> (customFloating $ W.RationalRect (0.1) (0.15) (0.8) (0.7))
+  , title     =? ""                  --> (customFloating $ W.RationalRect (0.1) (0.15) (0.8) (0.7))
+  , title     =? "Open Folder"                  --> (customFloating $ W.RationalRect (0.1) (0.15) (0.8) (0.7))
+  , title     =? "Select Folder"                --> (customFloating $ W.RationalRect (0.1) (0.15) (0.8) (0.7))
+  , title     =? "Print"                        --> (customFloating $ W.RationalRect (0.1) (0.15) (0.8) (0.7))
   , title     =? "Open Files"                   --> (customFloating $ W.RationalRect (0.1) (0.15) (0.8) (0.7))
+  , title     =? "Open File"                   --> (customFloating $ W.RationalRect (0.1) (0.15) (0.8) (0.7))
   , title     =? "Choose Files"                 --> (customFloating $ W.RationalRect (0.1) (0.15) (0.8) (0.7))
   , title     =? "Select a filename"            --> (customFloating $ W.RationalRect (0.1) (0.15) (0.8) (0.7))
   , title     =? "File Upload"  	            --> (customFloating $ W.RationalRect (0.1) (0.15) (0.8) (0.7))
   , title     =? "Insert Image"  	            --> (customFloating $ W.RationalRect (0.1) (0.15) (0.8) (0.7))
   , title     =? "Question"                     --> doCenterFloat
-  , title     =? "Visual Studio Code"           --> doCenterFloat
+--  , title     =? "Visual Studio Code"           --> doCenterFloat
   ] <+> namedScratchpadManageHook rScratchpads
 
 rLayoutHook = avoidStruts $ layoutHook def 
@@ -116,21 +125,22 @@ rKey =  [ ("M-S-<Return>", shellPrompt rXPConfig)
         , ("M-<Return>", spawn $ rTerminal)
         , ("M-S-q", io exitSuccess)
         , ("M-q", spawn "xmonad --recompile && xmonad --restart")
+        , ("M-r", spawn "xmonad --restart")
         , ("M-w", windows W.swapMaster)
         , ("<XF86AudioMute>", spawn "amixer -D pulse sset Master toggle")
         , ("<XF86AudioLowerVolume>", spawn "amixer -D pulse sset Master 4%-")
         , ("<XF86AudioRaiseVolume>", spawn "amixer -D pulse sset Master 4%+")
         , ("<XF86MonBrightnessDown>", spawn "brightnessctl set 2%-")
         , ("<XF86MonBrightnessUp>", spawn "brightnessctl set 2%+")
-        , ("<Print>", spawn "scrot ~/Pictures/scrot/%Y-%m-%d_%s.png")
-        , ("M-<Print>", spawn "scrot -s ~/Pictures/scrot/%Y-%m-%d_%s.png")
+        , ("<Print>", spawn "scrot ~/Pictures/scrot-%Y-%m-%d_%s.png")
+        , ("M-<Print>", spawn "scrot -s ~/Pictures/scrot-%Y-%m-%d_%s.png")
         , ("M-S-<Print>", spawn "scrot .scrot.png && xclip -selection c -t image/png -i .scrot.png && rm .scrot.png")
         , ("M-C-<Print>", spawn "scrot -s .scrot.png && xclip -selection c -t image/png -i .scrot.png && rm .scrot.png")
         , ("M-S-f", spawn "firefox --private-window")
         , ("M-S-g", spawn "google-chrome --incognito")
-      --, ("M-S-b", spawn "brave --incognito")
+      --, ("M-S-g", spawn "brave-browser --incognito")
       --, ("M-S-x", spawn "xournalpp")
-        , ("M-S-l", spawn "libreoffice7.1")
+        , ("M-S-l", spawn "libreoffice7.0")
         , ("M-b", spawn "killall xmobar")
         , ("M-S-p", spawn "pavucontrol")
         , ("M1-<Return>", namedScratchpadAction rScratchpads "terminal")
@@ -138,7 +148,8 @@ rKey =  [ ("M-S-<Return>", shellPrompt rXPConfig)
         , ("M-S-m", namedScratchpadAction rScratchpads "mplayer")
         , ("M-S-s", namedScratchpadAction rScratchpads "ssr")
         , ("M-S-e", namedScratchpadAction rScratchpads "fm")
-        , ("M-S-w", namedScratchpadAction rScratchpads "vscode")
+        --, ("M-S-w", namedScratchpadAction rScratchpads "vscode")
+        --, ("M-S-w", namedScratchpadAction rScratchpads "sublime")
         , ("M-S-<KP_Add>", shiftTo Next nonNSP >> moveTo Next nonNSP)
         , ("M-S-<KP_Subtract>", shiftTo Prev nonNSP >> moveTo Prev nonNSP)
         ]

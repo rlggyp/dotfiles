@@ -1,4 +1,4 @@
-URxvt.perl-ext-common:default, selection-to-clipboard, clipboard 
+Rxvt.perl-ext-common:default, selection-to-clipboard, clipboard 
 URxvt*imLocale: en_US.UTF-8
 URxvt.font:xft:Mononoki NF:size=11:antialias:true
 URxvt.scrollBar:false
