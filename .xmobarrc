@@ -1,4 +1,4 @@
-Config { font = "xft:mononoki NF:size=9:Regular, Symbola:size=9:Regular, Noto Sans CJK JP:size=9:Regular,  Noto Sans CJK KR:size=9:Regular, Noto Sans CJK SC:size=9:Regular, Noto Sans CJK TC:size=9:Regular"
+Config { font = "xft:Mononoki NF:size=9:Regular, Symbola:size=9:Regular, Noto Sans CJK JP:size=9:Regular,  Noto Sans CJK KR:size=9:Regular, Noto Sans CJK SC:size=9:Regular, Noto Sans CJK TC:size=9:Regular"
        , additionalFonts = []
        , borderColor = "#282a36"
        , border = NoBorder
@@ -29,7 +29,7 @@ Config { font = "xft:mononoki NF:size=9:Regular, Symbola:size=9:Regular, Noto Sa
                     , Run Memory ["-t","Mem: <usedratio>%"] 10
                     , Run Swap [] 10
                     , Run Com "uname" ["-s","-r"] "" 36000
-                    , Run Date "%a %b %d %H:%M" "date" 300
+                    , Run DateZone "%a %b %d %I:%M %p" "en_US.UTF-8" "Asia/Jakarta" "datetime" 300
 		    , Run Battery        [ "--template" , "<acstatus>" 
                              , "--" -- battery specific options
                                        -- discharging status
@@ -47,5 +47,5 @@ Config { font = "xft:mononoki NF:size=9:Regular, Symbola:size=9:Regular, Noto Sa
 
        , sepChar = "%"
        , alignSep = "}{"
-       , template = " %UnsafeStdinReader% }{ %battery% %date% "
+       , template = " %UnsafeStdinReader% }{ %battery% %datetime% "
        }
