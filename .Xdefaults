@@ -1,6 +1,6 @@
 Rxvt.perl-ext-common:default, selection-to-clipboard, clipboard 
 URxvt*imLocale: en_US.UTF-8
-URxvt.font:xft:Mononoki NF:size=11:antialias:true
+URxvt.font:xft:Mononoki NF:size=10:antialias:true
 URxvt.scrollBar:false
 URxvt.clipboard.autocopy: true
 URxvt.keysym.Shift-Control-V:eval:paste_clipboard
@@ -17,7 +17,7 @@ XTerm*vt100.saveLines: 4096
 XTerm*vt100.renderFont: true
 XTerm*vt100.locale:true
 XTerm.vt100.bellIsUrgent: false
-XTerm*vt100.faceName:xft:Mononoki NF:size=11:antialias=true
+XTerm*vt100.font:xft:Mononoki NF:size=10:antialias=true
 XTerm*letterSpace: -1
 XTerm*vt100.scrollBar:false
 xterm*visualBell:off
