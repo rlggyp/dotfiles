@@ -11,6 +11,7 @@ import XMonad.Util.SpawnOnce
 import XMonad.Actions.DynamicWorkspaces (addHiddenWorkspace)
 import XMonad.Prompt
 import XMonad.Prompt.Shell (shellPrompt)
+import XMonad.Prompt.FuzzyMatch
 import XMonad.Util.EZConfig (additionalKeysP, removeKeysP)
 import XMonad.Actions.CycleWS
 import Data.Maybe (isJust)
@@ -19,7 +20,7 @@ import XMonad.ManageHook
 import XMonad.Util.NamedScratchpad
 import qualified XMonad.StackSet as W
 
---rBdr  = 10
+rBdr  = 10
 rCol1 = "#282828"
 rCol2 = "#ebdbb2"
 rCol3 = "#666666"
@@ -27,7 +28,7 @@ rCol4 = "#ff3333"
 rCol5 = "#ebdbb2"
 rFont = "xft:mononoki NF:size=9"
 
-rTerminal               = "rxvt" 
+rTerminal               = "urxvt" 
 rModMask                = mod4Mask
 rBorderWidth            = 2
 rNormalBorderColor      = rCol1
@@ -45,17 +46,16 @@ rScratchpads = [ NS "terminal" (rTerminal ++ " -name rTerminal") (resource =? "r
     	       --, NS "sublime" "subl" (className =? "Sublime_text") (customFloating $ W.RationalRect (0.0001) (0.03) (1) (0.97)) 
                , NS "fm" (rTerminal ++ " -e ranger") (title =? "ranger") (customFloating $ W.RationalRect (0.1) (0.15) (0.8) (0.7)) 
                , NS "network" (rTerminal ++ " -e nmtui") (title =? "nmtui") doCenterFloat 
-       	       , NS "mplayer" (rTerminal ++ " -e cmus") (title =? "cmus") (customFloating $ W.RationalRect (0.1) (0.15) (0.8) (0.7)) 
+       	       , NS "mplayer" (rTerminal ++ " -e cmus") (title =? "cmus v2.9.1") (customFloating $ W.RationalRect (0.1) (0.15) (0.8) (0.7)) 
                ]
 
---rStartupHook = do
---  spawnOnce "feh --bg-fill ~/.wallpaper/11-0-Color-Day.jpg &"
---  spawnOnce "brightnessctl set 5% &"
---  spawnOnce "xsetroot -cursor_name left_ptr &" 
---  spawnOnce "xset b off &"
+rStartupHook = do
+  spawnOnce "feh --bg-fill ~/.wallpaper/11-0-Color-Day.jpg &"
+  spawnOnce "xsetroot -cursor_name left_ptr &" 
+  spawnOnce "xset b off &"
 
 rManageHook  = composeAll
-  [ className =? "Pavucontrol"                  --> doCenterFloat
+  [ className =? "Pavucontrol"                  --> (customFloating $ W.RationalRect (0.1) (0.15) (0.8) (0.7))
   , className =? "VirtualBox Manager"           --> doCenterFloat
   , className =? "mpv"                          --> doFullFloat
   , className =? "Sxiv"                         --> doCenterFloat
@@ -77,11 +77,13 @@ rManageHook  = composeAll
   , title     =? "Select a filename"            --> (customFloating $ W.RationalRect (0.1) (0.15) (0.8) (0.7))
   , title     =? "File Upload"  	            --> (customFloating $ W.RationalRect (0.1) (0.15) (0.8) (0.7))
   , title     =? "Insert Image"  	            --> (customFloating $ W.RationalRect (0.1) (0.15) (0.8) (0.7))
+  --, className =? "Pavucontrol"  	            --> (customFloating $ W.RationalRect (0.1) (0.15) (0.8) (0.7))
   , title     =? "Question"                     --> doCenterFloat
 --  , title     =? "Visual Studio Code"           --> doCenterFloat
   ] <+> namedScratchpadManageHook rScratchpads
 
-rLayoutHook = avoidStruts $ layoutHook def 
+rLayoutHook = avoidStruts $ spacingRaw False (Border rBdr 0 rBdr 0) True (Border 0 rBdr 0 rBdr) True $ layoutHook def 
+--rLayoutHook = avoidStruts $ layoutHook def 
 --rLayoutHook = avoidStruts $ tiled ||| Mirror tiled ||| Full
 --  where
 --        tiled   = Tall nmaster delta ratio
@@ -114,7 +116,8 @@ rXPConfig = def
           , historySize = 256
           , historyFilter = id
           , defaultText = []
---          , searchPredicate = fuzzyMatch
+          , searchPredicate = fuzzyMatch
+	  , sorter = fuzzySort
           , autoComplete = Nothing
           , showCompletionOnTab = False
           , alwaysHighlight = True
@@ -127,9 +130,12 @@ rKey =  [ ("M-S-<Return>", shellPrompt rXPConfig)
         , ("M-q", spawn "xmonad --recompile && xmonad --restart")
         , ("M-r", spawn "xmonad --restart")
         , ("M-w", windows W.swapMaster)
-        , ("<XF86AudioMute>", spawn "amixer -D pulse sset Master toggle")
-        , ("<XF86AudioLowerVolume>", spawn "amixer -D pulse sset Master 4%-")
-        , ("<XF86AudioRaiseVolume>", spawn "amixer -D pulse sset Master 4%+")
+        --, ("<XF86AudioMute>", spawn "amixer -D pulse sset Master toggle")
+        --, ("<XF86AudioLowerVolume>", spawn "amixer -D pulse sset Master 4%-")
+        --, ("<XF86AudioRaiseVolume>", spawn "amixer -D pulse sset Master 4%+")
+        , ("M1-m", spawn "amixer -D pulse sset Master toggle")
+        , ("M1-,", spawn "amixer -D pulse sset Master 4%-")
+        , ("M1-.", spawn "amixer -D pulse sset Master 4%+")
         , ("<XF86MonBrightnessDown>", spawn "brightnessctl set 2%-")
         , ("<XF86MonBrightnessUp>", spawn "brightnessctl set 2%+")
         , ("<Print>", spawn "scrot ~/Pictures/scrot-%Y-%m-%d_%s.png")
@@ -137,12 +143,12 @@ rKey =  [ ("M-S-<Return>", shellPrompt rXPConfig)
         , ("M-S-<Print>", spawn "scrot .scrot.png && xclip -selection c -t image/png -i .scrot.png && rm .scrot.png")
         , ("M-C-<Print>", spawn "scrot -s .scrot.png && xclip -selection c -t image/png -i .scrot.png && rm .scrot.png")
         , ("M-S-f", spawn "firefox --private-window")
-        , ("M-S-g", spawn "google-chrome --incognito")
+        , ("M-S-g", spawn "chromium --incognito")
       --, ("M-S-g", spawn "brave-browser --incognito")
       --, ("M-S-x", spawn "xournalpp")
-        , ("M-S-l", spawn "libreoffice7.0")
+        , ("M-S-l", spawn "libreoffice")
         , ("M-b", spawn "killall xmobar")
-        , ("M-S-p", spawn "pavucontrol")
+        , ("M-S-v", spawn "pavucontrol")
         , ("M1-<Return>", namedScratchpadAction rScratchpads "terminal")
         , ("M-S-n", namedScratchpadAction rScratchpads "network")
         , ("M-S-m", namedScratchpadAction rScratchpads "mplayer")
@@ -161,7 +167,7 @@ main = do
  xmonad $ docks def
 	{ handleEventHook   = XMonad.Hooks.EwmhDesktops.fullscreenEventHook
 	, manageHook		= rManageHook 
-	--, startupHook		= rStartupHook
+	, startupHook		= rStartupHook
 	, workspaces		= ["1","2","3","4","5","6","7","8","9"]
 	, layoutHook		= rLayoutHook
 	, modMask 	    	= rModMask
