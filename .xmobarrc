@@ -1,9 +1,9 @@
-Config { font = "xft:Mononoki NF:size=9:Regular, Symbola:size=9:Regular, Noto Sans CJK JP:size=9:Regular,  Noto Sans CJK KR:size=9:Regular, Noto Sans CJK SC:size=9:Regular, Noto Sans CJK TC:size=9:Regular"
+Config { font = "xft:JetBrainsMono NF:size=9:Regular, Symbola:size=9:Regular, Noto Sans CJK JP:size=9:Regular,  Noto Sans CJK KR:size=9:Regular, Noto Sans CJK SC:size=9:Regular, Noto Sans CJK TC:size=9:Regular"
        , additionalFonts = []
-       , borderColor = "#282a36"
+       , borderColor = "#2e3440"
        , border = NoBorder
-       , bgColor = "#282828"
-       , fgColor = "#ebdbb2"
+       , bgColor = "#2e3440"
+       , fgColor = "#d8dee9"
        , alpha = 255
        , position = Top
        , textOffset = -1
@@ -29,7 +29,7 @@ Config { font = "xft:Mononoki NF:size=9:Regular, Symbola:size=9:Regular, Noto Sa
                     , Run Memory ["-t","Mem: <usedratio>%"] 10
                     , Run Swap [] 10
                     , Run Com "uname" ["-s","-r"] "" 36000
-                    , Run DateZone "%a %b %d %I:%M %p" "en_US.UTF-8" "Asia/Jakarta" "datetime" 300
+                    , Run Date "%a %b %d %I:%M %p %S" "datetime" 100
 		    , Run Battery        [ "--template" , "<acstatus>" 
                              , "--" -- battery specific options
                                        -- discharging status
