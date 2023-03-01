@@ -1,5 +1,5 @@
 {
-    "editor.fontLigatures": true,
+    "editor.fontLigatures": false,
     "editor.tabSize": 2,
     "vim.showmodename": false,
     "vim.useSystemClipboard": true,
@@ -15,7 +15,6 @@
     "editor.minimap.enabled": false,
     "editor.fontFamily": "JetBrains Mono",
     "editor.renderWhitespace": "none",
-    "workbench.iconTheme": "Monokai Pro Icons",
     "scm.inputFontFamily": "editor",
     "debug.console.fontFamily": "editor",
     "markdown.preview.fontFamily": "'JetBrains Mono',-apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif",
@@ -24,5 +23,6 @@
     "workbench.preferredLightColorTheme": "Solarized Light",
     "workbench.tips.enabled": false,
     "window.titleBarStyle": "custom",
-    "editor.fontSize": 12
+    "editor.fontSize": 12,
+    "editor.bracketPairColorization.enabled": false
 }
