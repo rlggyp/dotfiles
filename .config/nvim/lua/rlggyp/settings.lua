@@ -1,3 +1,6 @@
+-- colorscheme
+vim.cmd[[colorscheme tokyonight-night]]
+
 -- options
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
@@ -23,6 +26,8 @@ local opts = { noremap = true, silent = true }
 
 vim.api.nvim_set_keymap("", "<Space>", "<Nop>", opts)
 
+vim.api.nvim_set_keymap("n", "<A-Tab>", ":NERDTreeTabsToggle<CR>", opts)
+
 vim.api.nvim_set_keymap("n", "<C-h>", "<C-w>h", opts)
 vim.api.nvim_set_keymap("n", "<C-j>", "<C-w>j", opts)
 vim.api.nvim_set_keymap("n", "<C-k>", "<C-w>k", opts)
@@ -47,3 +52,11 @@ vim.api.nvim_set_keymap("x", "J", ":m '>+1<CR>gv-gv", opts)
 vim.api.nvim_set_keymap("x", "K", ":m '<-2<CR>gv-gv", opts)
 vim.api.nvim_set_keymap("x", "<A-j>", ":m '>+1<CR>gv-gv", opts)
 vim.api.nvim_set_keymap("x", "<A-k>", ":m '<-2<CR>gv-gv", opts)
+
+vim.api.nvim_set_keymap("n", "<A-1>", ":tabprevious<CR>", opts)
+vim.api.nvim_set_keymap("n", "<A-2>", ":tabnext<CR>", opts)
+vim.api.nvim_set_keymap("n", "<A-n>", ":tabnew<CR>", opts)
+vim.api.nvim_set_keymap("n", "<A-q>", ":tabclose<CR>", opts)
+
+vim.api.nvim_set_keymap("n", "<A-F>", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", opts)
+vim.api.nvim_set_keymap("n", "<A-f>", "<cmd>Telescope live_grep<cr>", opts)

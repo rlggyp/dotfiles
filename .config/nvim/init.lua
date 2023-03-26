@@ -1,2 +1,4 @@
 require("rlggyp")
-vim.cmd[[colorscheme tokyonight-night]]
+require("rlggyp.settings")
+require("rlggyp.completion")
+--vim.cmd[[colorscheme tokyonight-night]]
