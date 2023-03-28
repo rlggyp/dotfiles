@@ -17,6 +17,7 @@ vim.opt.wrap = false
 vim.opt.hlsearch = false
 vim.opt.showmode = false
 vim.opt.swapfile = false
+vim.opt.signcolumn = "no"
 
 -- global
 vim.g.mapleader = " "
