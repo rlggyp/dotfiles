@@ -16,9 +16,13 @@ return {
 
     local lspkind = require("lspkind")
 
+    local check_backspace = function()
+      local col = vim.fn.col "." - 1
+      return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
+    end
+
     -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
     require("luasnip.loaders.from_vscode").lazy_load()
-
 
 		cmp.setup {
 		  snippet = {

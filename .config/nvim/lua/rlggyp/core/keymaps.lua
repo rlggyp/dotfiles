@@ -4,8 +4,6 @@ vim.g.mapleader = " "
 local keymap = vim.keymap -- for conciseness
 local opts = { noremap = true, silent = true }
 
--- General Keymaps
-
 -- use jk to exit insert mode
 keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
 
