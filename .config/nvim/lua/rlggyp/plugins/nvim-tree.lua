@@ -7,9 +7,6 @@ return {
     vim.g.loaded_netrw = 1
     vim.g.loaded_netrwPlugin = 1
     
-    -- set termguicolors to enable highlight groups
-    -- vim.opt.termguicolors = true
-
     local nvimtree = require("nvim-tree")
    -- change color for arrows in tree to light blue
   	vim.cmd([[ highlight NvimTreeIndentMarker guifg=#A9B1D6 ]])
@@ -58,10 +55,10 @@ return {
   	})
   	
   	-- set keymaps
-  	local keymap = vim.keymap -- for conciseness
+  	local keymap = vim.keymap
 
 		keymap.set("n", "<A-Tab>", "<cmd>NvimTreeToggle<CR>", opts)
-		keymap.set("n", "<A-e>", "<cmd>NvimTreeFindFileToggle<CR>", opts)
+		keymap.set("n", "<leader>ef", "<cmd>NvimTreeFindFileToggle<CR>", opts)
 		keymap.set("n", "<A-r>", "<cmd>NvimTreeRefresh<CR>", opts)
   end,
 }

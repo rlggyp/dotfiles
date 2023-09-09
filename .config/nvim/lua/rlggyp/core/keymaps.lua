@@ -29,10 +29,10 @@ keymap.set("x", "K", ":m '<-2<CR>gv-gv", opts)
 keymap.set("x", "<A-j>", ":m '>+1<CR>gv-gv", opts)
 keymap.set("x", "<A-k>", ":m '<-2<CR>gv-gv", opts)
 
-keymap.set("n", "<A-1>", ":tabprevious<CR>", opts)
-keymap.set("n", "<A-2>", ":tabnext<CR>", opts)
-keymap.set("n", "<A-n>", ":tabnew<CR>", opts)
-keymap.set("n", "<A-q>", ":tabclose<CR>", opts)
+keymap.set("n", "<A-1>", ":bprev<CR>", opts)
+keymap.set("n", "<A-2>", ":bnext<CR>", opts)
+keymap.set("n", "<A-n>", ":enew<CR>", opts)
+keymap.set("n", "<A-q>", ":bdelete %<CR>", opts)
 
 -- clear search highlights
 keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
@@ -40,9 +40,6 @@ keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
 -- increment/decrement numbers
 keymap.set("n", "<A-=>", "<C-a>", { desc = "Increment number" }) -- increment
 keymap.set("n", "<A-->", "<C-x>", { desc = "Decrement number" }) -- decrement
-
-keymap.set("n", "<A-d>", ":DiffviewOpen<CR>", opts) -- DiffviewOpen
-keymap.set("n", "<A-c>", ":DiffviewClose<CR>", opts) -- DiffviewClose
 
 -- window management
 keymap.set("n", "<A-v>", "<C-w>v", { desc = "Split window vertically" }) -- split window vertically

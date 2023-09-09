@@ -16,3 +16,4 @@ opt.hlsearch = true
 opt.showmode = false
 opt.swapfile = false
 opt.signcolumn = "no"
+opt.termguicolors = true
