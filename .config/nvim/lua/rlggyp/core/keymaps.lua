@@ -33,6 +33,7 @@ keymap.set("n", "<A-1>", ":bprev<CR>", opts)
 keymap.set("n", "<A-2>", ":bnext<CR>", opts)
 keymap.set("n", "<A-n>", ":enew<CR>", opts)
 keymap.set("n", "<A-q>", ":bdelete %<CR>", opts)
+keymap.set("n", "<A-S-q>", ":bdelete %<CR>", opts)
 
 -- clear search highlights
 keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })

@@ -23,6 +23,16 @@ return {
   	      enable = true
   	    },
 				icons = {
+          web_devicons = {
+            file = {
+              enable = false,
+              color = false,
+            },
+            folder = {
+              enable = false,
+              color = true,
+            },
+          },
           glyphs = {
             git = {
               unstaged = "M",

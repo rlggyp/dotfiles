@@ -15,7 +15,7 @@ return {
     		middle_mouse_command = nil,          -- can be a string | function, | false see "Mouse actions"
     		indicator = {
     			icon = ' ', -- this should be omitted if indicator style is not 'icon'
-    			style = 'icon', -- | 'underline' | 'none',
+    			style = "none", -- 'icon' | 'underline' | 'none',
     		},
     		buffer_close_icon = '󰅖',
     		modified_icon = '●',
@@ -71,7 +71,7 @@ return {
     				separator = true
     			}
     		},
-    		color_icons = true, -- true | false, -- whether or not to add the filetype icon highlights
+    		color_icons = false, -- true | false, -- whether or not to add the filetype icon highlights
     		get_element_icon = function(element)
     			-- element consists of {filetype: string, path: string, extension: string, directory: string}
     			-- This can be used to change how bufferline fetches the icon
@@ -83,7 +83,7 @@ return {
     			-- local custom_map = {my_thing_ft: {icon = "my_thing_icon", hl}}
     			-- return custom_map[element.filetype]
     		end,
-    		show_buffer_icons = true, -- | false, -- disable filetype icons for buffers
+    		show_buffer_icons = false, -- | false, -- disable filetype icons for buffers
     		show_buffer_close_icons = true, -- | false,
     		show_close_icon = true, -- | false,
     		show_tab_indicators = true, -- | false,
