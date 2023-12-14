@@ -1,1 +1,0 @@
-scrot .scrot.png && xclip -selection c -t image/png -i .scrot.png && rm .scrot.png
