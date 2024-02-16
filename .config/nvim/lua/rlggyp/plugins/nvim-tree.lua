@@ -67,8 +67,8 @@ return {
   	-- set keymaps
   	local keymap = vim.keymap
 
-		keymap.set("n", "<A-Tab>", "<cmd>NvimTreeToggle<CR>", opts)
-		keymap.set("n", "<leader>ef", "<cmd>NvimTreeFindFileToggle<CR>", opts)
+		keymap.set("n", "<A-e>", "<cmd>NvimTreeToggle<CR>", opts)
 		keymap.set("n", "<A-r>", "<cmd>NvimTreeRefresh<CR>", opts)
+		-- keymap.set("n", "<leader>ef", "<cmd>NvimTreeFindFileToggle<CR>", opts)
   end,
 }
