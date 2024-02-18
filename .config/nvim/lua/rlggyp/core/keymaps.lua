@@ -36,6 +36,7 @@ keymap.set("n", "<A-q>", ":bdelete %<CR>", opts)
 
 -- clear search highlights
 keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
+keymap.set("n", "<leader>s", ":mks!<CR>", { desc = "Save vim session" })
 
 -- increment/decrement numbers
 keymap.set("v", "<A-=>", "g<C-a>", { desc = "Increment number" }) -- increment
