@@ -1,50 +1,53 @@
-Config { font = "xft:JetBrainsMono NF:size=9:Regular, Symbola:size=9:Regular, Noto Sans CJK JP:size=9:Regular,  Noto Sans CJK KR:size=9:Regular, Noto Sans CJK SC:size=9:Regular, Noto Sans CJK TC:size=9:Regular"
-       , additionalFonts = []
-       , borderColor = "#2e3440"
-       , border = NoBorder
-       , bgColor = "#2e3440"
-       , fgColor = "#d8dee9"
-       , alpha = 255
-       , position = Top
-       , textOffset = -1
-       , iconOffset = -1
-       , lowerOnStart = True
-       , pickBroadest = False
-       , persistent = False
-       , hideOnStart = False
-       , iconRoot = "."
-       , allDesktops = True
-       , overrideRedirect = True
-       , commands = [ Run Weather "EGPF" ["-t","<station>: <tempC>C",
-                                          "-L","18","-H","25",
-                                          "--normal","green",
-                                          "--high","red",
-                                          "--low","lightblue"] 36000
-                    , Run Network "enp2s0" ["-L","0","-H","32",
-                                          "--normal","green","--high","red"] 10
-                    , Run Network "wlp1s" ["-L","0","-H","32",
-                                          "--normal","green","--high","red"] 10
-                    , Run Cpu ["-L","3","-H","50",
-                               "--normal","green","--high","red"] 10
-                    , Run Memory ["-t","Mem: <usedratio>%"] 10
-                    , Run Swap [] 10
-                    , Run Com "uname" ["-s","-r"] "" 36000
-                    , Run Date "%a %b %d %I:%M %p %S" "datetime" 100
-		    , Run Battery        [ "--template" , "<acstatus>" 
-                             , "--" -- battery specific options
-                                       -- discharging status
-                                       , "-o"	, "-<left>%"
-                                       -- AC "on" status
-                                       , "-O"	, "+<left>%"
-                                       -- charged status
-                                       , "-i"	, " <left>%"
+Config { font = "JetBrainsMono NF 10"
+  , additionalFonts = [
+    "Noto Sans CJK JP 10
+   , Noto Sans CJK KR 10
+   , Noto Sans CJK SC 10
+   , Noto Sans CJK TC 10"
+  ]
+  , bgColor = "#1A1B26"
+  , fgColor = "#C0CAF5"
+ 	, border = NoBorder
+  , alpha = 255
+  , position = Top
+  , textOffset = -1
+  , iconOffset = -1
+  , lowerOnStart = True
+  , pickBroadest = False
+  , persistent = False
+  , hideOnStart = False
+  , iconRoot = "."
+  , allDesktops = True
+  , overrideRedirect = True
+  , commands =	[ Run Weather "EGPF" ["-t","<station>: <tempC>C",
+																		 "-L","18","-H","25",
+																		 "--normal","green",
+																		 "--high","red",
+																		 "--low","lightblue"] 36000
+
+								, Run Network "enp2s0" ["-L","0","-H","32",
+								                        "--normal","green","--high","red"] 10
+
+								, Run Network "wlp1s" ["-L","0","-H","32",
+                                       "--normal","green","--high","red"] 10
+
+               	, Run Cpu ["-L","3","-H","50",
+               	           "--normal","green","--high","red"] 10
+               	, Run Memory ["-t","Mem: <usedratio>%"] 10
+               	, Run Swap [] 10
+               	, Run Com "uname" ["-s","-r"] "" 36000
+               	, Run Date "%a %b %d %I:%M %p" "datetime" 600
+		    				, Run BatteryP ["BAT0"] [ "--template" , "<acstatus>" 
+                             	, "--" -- battery specific options 
+                              , "-o"	, "-<left>%" -- discharging
+                              , "-O"	, "+<left>%" -- charging
+                              , "-i"	, " <left>%" -- fully charged
                              ] 10
 		    , Run UnsafeStdinReader
 		    , Run Wireless "wlp1s0" ["-t", "<essid>",
-					     "-x", ""] 10
+					     									 "-x", ""] 10
 		    , Run Com "rqual" [] "" 10
-                    ]
-
+      	]
        , sepChar = "%"
        , alignSep = "}{"
        , template = " %UnsafeStdinReader% }{ %battery% %datetime% "
