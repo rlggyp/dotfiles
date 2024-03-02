@@ -136,5 +136,18 @@
     "key": "ctrl+shift+g",
     "command": "-workbench.view.scm",
     "when": "workbench.scm.active"
+  },
+  {
+    "key": "shift+alt+f",
+    "command": "workbench.action.quickOpen",
+    "when": "editorFocus"
+  },
+  {
+    "key": "shift+alt+f",
+    "command": "workbench.action.quickOpen"
+  },
+  {
+    "key": "ctrl+p",
+    "command": "-workbench.action.quickOpen"
   }
 ]
