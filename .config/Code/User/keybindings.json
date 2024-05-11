@@ -1,0 +1,88 @@
+// Place your key bindings in this file to override the defaults
+[
+  {
+    "key": "alt+q",
+    "command": "workbench.action.closeActiveEditor"
+  },
+  {
+    "key": "alt+t",
+    "command": "workbench.action.terminal.toggleTerminal",
+    "when": "terminal.active"
+  },
+  {
+    "key": "alt+e",
+    "command": "workbench.view.explorer",
+    "when": "viewContainer.workbench.view.explorer.enabled"
+  },
+  {
+    "key": "alt+f",
+    "command": "workbench.action.findInFiles"
+  },
+  {
+    "key": "alt+s",
+    "command": "-gitlens.showQuickRepoStatus",
+    "when": "!gitlens:disabled && config.gitlens.keymap == 'alternate'"
+  },
+  {
+    "key": "alt+s",
+    "command": "workbench.view.scm",
+    "when": "workbench.scm.active"
+  },
+  {
+    "key": "alt+x",
+    "command": "workbench.view.extensions",
+    "when": "viewContainer.workbench.view.extensions.enabled"
+  },
+  {
+    "key": "shift+alt+e",
+    "command": "workbench.action.toggleSidebarVisibility"
+  },
+  {
+    "key": "ctrl+shift+0",
+    "command": "workbench.action.zoomReset"
+  },
+  {
+    "key": "alt+o",
+    "command": "workbench.action.files.openFolder",
+    "when": "openFolderWorkspaceSupport"
+  },
+  {
+    "key": "shift+alt+q",
+    "command": "workbench.action.closeFolder",
+    "when": "emptyWorkspaceSupport && workbenchState != 'empty'"
+  },
+  {
+    "key": "shift+alt+t",
+    "command": "workbench.action.terminal.new",
+    "when": "terminalProcessSupported || terminalWebExtensionContributedProfile"
+  },
+  {
+    "key": "ctrl+e",
+    "command": "-workbench.action.quickOpen"
+  },
+  {
+    "key": "alt+right",
+    "command": "-workbench.action.terminal.focusNextPane",
+    "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+  },
+  {
+    "key": "alt+right",
+    "command": "-gitlens.key.alt+right",
+    "when": "gitlens:key:alt+right"
+  },
+  {
+    "key": "alt+right",
+    "command": "workbench.action.terminal.focusNext",
+    "when": "terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus"
+  },
+  {
+    "key": "alt+left",
+    "command": "workbench.action.terminal.focusPrevious",
+    "when": "terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus"
+  },
+  {
+    "key": "alt+left",
+    "command": "-workbench.action.terminal.focusPreviousPane",
+    "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+  }
+]
