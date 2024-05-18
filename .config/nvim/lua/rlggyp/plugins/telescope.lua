@@ -5,10 +5,28 @@ return {
   },
 
 	config = function()
-		require('telescope.builtin')
+		require('telescope').setup({
+			defaults = {
+				border = {
+					prompt = { 1, 1, 1, 1 },
+					results = { 1, 1, 1, 1 },
+					preview = { 1, 1, 1, 1 },
+				},
+				borderchars = {
+					prompt = { " ", " ", "─", "│", "│", " ", "─", "└" },
+					results = { "─", " ", " ", "│", "┌", "─", " ", "│" },
+					preview = { "─", "│", "─", "│", "┬", "┐", "┘", "┴" },
+				}
+			}
+		})
 
   	local keymap = vim.keymap
-		keymap.set("n", "<A-F>", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", opts)
-		keymap.set("n", "<A-f>", "<cmd>Telescope live_grep<cr>", opts)
+		local builtin = require('telescope.builtin')
+
+		keymap.set("n", "<leader>ff", builtin.find_files, {})
+		keymap.set('n', '<leader>fg', builtin.live_grep, {})
+		keymap.set('n', '<leader>fb', builtin.current_buffer_fuzzy_find, {})
+		keymap.set('n', '<leader>fs', builtin.buffers, {})
+		keymap.set('n', '<leader>gs', builtin.git_status, {})
 	end
 }

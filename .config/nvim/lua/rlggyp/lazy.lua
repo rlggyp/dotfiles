@@ -12,9 +12,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({{import = "rlggyp.plugins"}}, {
-  install = {
-    colorscheme = { "tokyonight-night" },
-  },
   checker = {
     enabled = true,
     notify = false,

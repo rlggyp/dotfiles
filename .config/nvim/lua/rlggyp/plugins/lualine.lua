@@ -3,8 +3,10 @@ return {
  	config = function()
  		require('lualine').setup({
  		  options = {
- 				theme = "tokyonight-night",
- 		    icons_enabled = false, theme = 'auto', component_separators = { left = '', right = ''},
+ 				-- theme = "gruvbox",
+ 		    icons_enabled = false, 
+				theme = 'auto', 
+				component_separators = { left = '', right = ''},
  		    section_separators = { left = '', right = ''},
  		    disabled_filetypes = {
  		      statusline = {},

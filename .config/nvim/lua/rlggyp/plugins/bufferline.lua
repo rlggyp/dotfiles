@@ -6,7 +6,8 @@ return {
     bufferline.setup {
     	options = {
     		mode = "buffers", -- set to "tabs" to only show tabpages instead
-    		style_preset = bufferline.style_preset.default, -- or bufferline.style_preset.minimal,
+    		-- style_preset = bufferline.style_preset.default, -- or bufferline.style_preset.minimal,
+    		style_preset = bufferline.style_preset.no_italic, -- or bufferline.style_preset.minimal,
     		themable = true, -- allows highlight groups to be overriden i.e. sets highlights as default
     		numbers = "none", -- | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
     		close_command = "bdelete! %d",       -- can be a string | function, | false see "Mouse actions"
@@ -68,7 +69,7 @@ return {
     				filetype = "NvimTree",
     				text = "File Explorer", -- | function ,
     				text_align = "left", -- | "center" | "right"
-    				separator = true
+    				separator = false
     			}
     		},
     		color_icons = false, -- true | false, -- whether or not to add the filetype icon highlights
@@ -107,5 +108,17 @@ return {
     		--end
     	}
     }
+
+  	local keymap = vim.keymap
+
+		keymap.set('n', '<A-1>', '<cmd>lua require("bufferline").go_to(1, true)<cr>', {})
+		keymap.set('n', '<A-2>', '<cmd>lua require("bufferline").go_to(2, true)<cr>', {})
+		keymap.set('n', '<A-3>', '<cmd>lua require("bufferline").go_to(3, true)<cr>', {})
+		keymap.set('n', '<A-4>', '<cmd>lua require("bufferline").go_to(4, true)<cr>', {})
+		keymap.set('n', '<A-5>', '<cmd>lua require("bufferline").go_to(5, true)<cr>', {})
+		keymap.set('n', '<A-6>', '<cmd>lua require("bufferline").go_to(6, true)<cr>', {})
+		keymap.set('n', '<A-7>', '<cmd>lua require("bufferline").go_to(7, true)<cr>', {})
+		keymap.set('n', '<A-8>', '<cmd>lua require("bufferline").go_to(8, true)<cr>', {})
+		keymap.set('n', '<A-9>', '<cmd>lua require("bufferline").go_to(9, true)<cr>', {})
 	end
 }
