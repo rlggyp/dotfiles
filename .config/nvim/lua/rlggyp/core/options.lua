@@ -4,6 +4,7 @@ opt.tabstop = 2
 opt.shiftwidth = 2
 opt.updatetime = 200
 opt.fileencoding = "utf-8"
+opt.filetype = "on"
 opt.clipboard = "unnamedplus"
 opt.smartcase = true
 opt.ignorecase = true
