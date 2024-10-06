@@ -27,13 +27,13 @@ return {
     		--- Please note some names can/will break the
     		--- bufferline so use this at your discretion knowing that it has
     		--- some limitations that will *NOT* be fixed.
-    		name_formatter = function(buf)  -- buf contains:
-    		      -- name                | str        | the basename of the active file
-    		      -- path                | str        | the full path of the active file
-    		      -- bufnr (buffer only) | int        | the number of the active buffer
-    		      -- buffers (tabs only) | table(int) | the numbers of the buffers in the tab
-    		      -- tabnr (tabs only)   | int        | the "handle" of the tab, can be converted to its ordinal number using: `vim.api.nvim_tabpage_get_number(buf.tabnr)`
-    		end,
+    		-- name_formatter = function(buf)  -- buf contains:
+    		--       -- name                | str        | the basename of the active file
+    		--       -- path                | str        | the full path of the active file
+    		--       -- bufnr (buffer only) | int        | the number of the active buffer
+    		--       -- buffers (tabs only) | table(int) | the numbers of the buffers in the tab
+    		--       -- tabnr (tabs only)   | int        | the "handle" of the tab, can be converted to its ordinal number using: `vim.api.nvim_tabpage_get_number(buf.tabnr)`
+    		-- end,
     		max_name_length = 18,
     		max_prefix_length = 15, -- prefix used when a buffer is de-duplicated
     		truncate_names = true, -- whether or not tab names should be truncated
@@ -73,17 +73,6 @@ return {
     			}
     		},
     		color_icons = false, -- true | false, -- whether or not to add the filetype icon highlights
-    		get_element_icon = function(element)
-    			-- element consists of {filetype: string, path: string, extension: string, directory: string}
-    			-- This can be used to change how bufferline fetches the icon
-    			-- for an element e.g. a buffer or a tab.
-    			-- e.g.
-    			local icon, hl = require('nvim-web-devicons').get_icon_by_filetype(element.filetype, { default = false })
-    			return icon, hl
-    			-- or
-    			-- local custom_map = {my_thing_ft: {icon = "my_thing_icon", hl}}
-    			-- return custom_map[element.filetype]
-    		end,
     		show_buffer_icons = false, -- | false, -- disable filetype icons for buffers
     		show_buffer_close_icons = true, -- | false,
     		show_close_icon = true, -- | false,
@@ -101,11 +90,8 @@ return {
     			delay = 200,
     			reveal = {'close'}
     		},
-    		-- sort_by = 'insert_after_current' |'insert_at_end' | 'id' | 'extension' | 'relative_directory' | 'directory' | 'tabs' | function(buffer_a, buffer_b)
-    		sort_by = 'insert_after_end' -- function(buffer_a, buffer_b)
-    			-- add custom logic
-    		--	return buffer_a.modified > buffer_b.modified
-    		--end
+
+    		sort_by = 'insert_after_end'
     	}
     }
 
@@ -122,3 +108,4 @@ return {
 		keymap.set('n', '<A-9>', '<cmd>lua require("bufferline").go_to(9, true)<cr>', {})
 	end
 }
+

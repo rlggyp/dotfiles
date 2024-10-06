@@ -12,9 +12,16 @@ keymap.set("n", "<C-j>", "<C-w>j", opts)
 keymap.set("n", "<C-k>", "<C-w>k", opts)
 keymap.set("n", "<C-l>", "<C-w>l", opts)
 
+-- delete single character without copying into register
+keymap.set("n", "x", '"_x', opts)
+
+-- keep register after pasting
+keymap.set("v", "p", '"_dP', opts)
+
 keymap.set("n", "<C-Up>", ":resize -2<CR>", opts)
 keymap.set("n", "<C-Down>", ":resize +2<CR>", opts)
 keymap.set("n", "<C-Left>", ":vertical resize -2<CR>", opts)
+keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
 keymap.set("v", "<", "<gv", opts)
@@ -32,7 +39,7 @@ keymap.set("x", "<A-k>", ":m '<-2<CR>gv-gv", opts)
 keymap.set("n", "<S-Tab>", ":bprev<CR>", opts)
 keymap.set("n", "<Tab>", ":bnext<CR>", opts)
 keymap.set("n", "<A-n>", ":enew<CR>", opts)
-keymap.set("n", "<A-q>", ":bdelete %<CR>", opts)
+keymap.set("n", "<A-q>", ":bdelete! %<CR>", opts)
 
 -- clear search highlights
 keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
@@ -45,5 +52,5 @@ keymap.set("v", "<A-->", "g<C-x>", { desc = "Decrement number" }) -- decrement
 -- window management
 keymap.set("n", "<A-v>", "<C-w>v", { desc = "Split window vertically" }) -- split window vertically
 keymap.set("n", "<A-h>", "<C-w>s", { desc = "Split window horizontally" }) -- split window horizontally
-keymap.set("n", "<A-s>", "<C-w>=", { desc = "Make splits equal size" }) -- make split windows equal width & height
+keymap.set("n", "<A-=>", "<C-w>=", { desc = "Make splits equal size" }) -- make split windows equal width & height
 keymap.set("n", "<A-w>", "<cmd>close<CR>", { desc = "Close current split" }) -- close current split window

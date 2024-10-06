@@ -1,8 +1,5 @@
 return {
   "nvim-tree/nvim-tree.lua",
-  dependencies = {
-    "nvim-tree/nvim-web-devicons"
-  },
   config = function()
     vim.g.loaded_netrw = 1
     vim.g.loaded_netrwPlugin = 1
@@ -14,7 +11,8 @@ return {
   	-- configure nvim-tree
   	nvimtree.setup({
   	  view = {
-  	    width = 35,
+        side = "right",
+  	    width = 40,
   	    relativenumber = true,
   	  },
   	  -- change folder arrow icons
@@ -72,3 +70,4 @@ return {
 		-- keymap.set("n", "<leader>ef", "<cmd>NvimTreeFindFileToggle<CR>", opts)
   end,
 }
+
