@@ -16,13 +16,14 @@
         { "before": ["<C-k>"], "after": ["<C-w>", "k"] },
         { "before": ["<Tab>"], "commands": [":tabnext"] },
         { "before": ["<S-Tab>"], "commands": [":tabprev"] },
-        { "before": ["Q"], "after": ["@", "q", "j"] }
+        { "before": ["Q"], "after": ["@", "q", "j"] },
+        { "before": ["<leader>", "f", "f"], "commands": ["workbench.action.quickOpen"] },
     ],
     "vim.visualModeKeyBindingsNonRecursive": [
         { "before": ["J"], "commands": ["editor.action.moveLinesDownAction"] },
         { "before": ["K"], "commands": ["editor.action.moveLinesUpAction"] },
         { "before": ["<leader>", "c"], "commands": ["editor.action.commentLine"] },
-		{ "before": ["<leader>", "j", "k"], "after": ["<Esc>"] },
+        { "before": ["<leader>", "j", "k"], "after": ["<Esc>"] },
         { "before": ["<leader>", "i"], "after": ["g", "<C-a>"] },
         { "before": ["<leader>", "d"], "after": ["g", "<C-x>"] },
     ],
@@ -40,5 +41,6 @@
     "workbench.startupEditor": "none",
     "window.menuBarVisibility": "toggle",
     "window.enableMenuBarMnemonics": false,
-    "extensions.ignoreRecommendations": true
+    "extensions.ignoreRecommendations": true,
+    "editor.minimap.enabled": false
 }
